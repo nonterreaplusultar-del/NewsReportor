@@ -1,0 +1,127 @@
+feeds:
+  # ===== AI / Technology =====
+  - name: "OpenAI Blog"
+    category: "AI / Technology"
+    url: "https://openai.com/blog/rss.xml"
+    limit: 10
+
+  - name: "Google AI Blog"
+    category: "AI / Technology"
+    url: "https://blog.google/technology/ai/rss/"
+    limit: 10
+
+  - name: "MIT Technology Review"
+    category: "AI / Technology"
+    url: "https://www.technologyreview.com/feed/"
+    limit: 10
+
+  - name: "Hugging Face Blog"
+    category: "AI / Technology"
+    url: "https://huggingface.co/blog/feed.xml"
+    limit: 10
+
+  - name: "The Verge - AI"
+    category: "AI / Technology"
+    url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml"
+    limit: 5
+
+  # ===== Programming =====
+  - name: "Hacker News (firehose)"
+    category: "Programming"
+    url: "https://hnrss.org/frontpage"
+    limit: 20
+
+  - name: "The GitHub Blog"
+    category: "Programming"
+    url: "https://github.blog/feed/"
+    limit: 10
+
+  - name: "Ars Technica"
+    category: "Programming"
+    url: "https://feeds.arstechnica.com/arstechnica/index"
+    limit: 10
+
+  - name: "Simon Willison's Weblog"
+    category: "Programming"
+    url: "https://simonwillison.net/atom/everything/"
+    limit: 10
+
+  # ===== World Politics =====
+  - name: "BBC News"
+    category: "World Politics"
+    url: "https://feeds.bbci.co.uk/news/rss.xml"
+    limit: 10
+
+  - name: "NPR News"
+    category: "World Politics"
+    url: "https://feeds.npr.org/1001/rss.xml"
+    limit: 10
+
+  - name: "The Guardian - World"
+    category: "World Politics"
+    url: "https://www.theguardian.com/world/rss"
+    limit: 10
+
+  - name: "Al Jazeera"
+    category: "World Politics"
+    url: "https://www.aljazeera.com/xml/rss/all.xml"
+    limit: 10
+
+  # ===== China =====
+  - name: "The Diplomat"
+    category: "China"
+    url: "https://thediplomat.com/feed/"
+    limit: 10
+
+  - name: "SupChina / The China Project"
+    category: "China"
+    url: "https://thechinaproject.com/feed/"
+    limit: 10
+
+  - name: "Sixth Tone"
+    category: "China"
+    url: "https://www.sixthtone.com/rss"
+    limit: 10
+
+  # ===== Finance / Policy =====
+  - name: "The Economist"
+    category: "Finance / Policy"
+    url: "https://www.economist.com/finance-and-economics/rss.xml"
+    limit: 10
+
+  - name: "CNBC Top News"
+    category: "Finance / Policy"
+    url: "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114"
+    limit: 10
+
+  - name: "EFF Deeplinks"
+    category: "Finance / Policy"
+    url: "https://www.eff.org/rss/updates.xml"
+    limit: 10
+
+  # ===== Security =====
+  - name: "Krebs on Security"
+    category: "Security"
+    url: "https://krebsonsecurity.com/feed/"
+    limit: 10
+
+  - name: "Schneier on Security"
+    category: "Security"
+    url: "https://www.schneier.com/feed/"
+    limit: 10
+
+  - name: "The Hacker News"
+    category: "Security"
+    url: "https://feeds.feedburner.com/TheHackersNews"
+    limit: 10
+
+  # ===== Literature / Ideas =====
+  - name: "Aeon"
+    category: "Literature / Ideas"
+    url: "https://aeon.co/feed.rss"
+    limit: 10
+
+  - name: "The Marginalian"
+    category: "Literature / Ideas"
+    url: "https://www.themarginalian.org/feed/"
+    limit: 10
