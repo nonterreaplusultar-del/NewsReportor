@@ -6,6 +6,9 @@ on:
     - cron: "30 0,4,10,14 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   run-digest:
     runs-on: ubuntu-latest
@@ -34,15 +37,11 @@ jobs:
           MAX_ITEMS_PER_DIGEST: ${{ secrets.MAX_ITEMS_PER_DIGEST || '80' }}
         run: python scripts/run_digest_once.py
 
-      - name: Commit and push state changes
-        if: always()
+      - name: Commit updated digest state
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/state.json data/items.jsonl digests/ || true
-          if git diff --staged --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "chore: update digest state [skip ci]"
-            git push
-          fi
+
+          git add data/state.json digests/
+          git diff --cached --quiet || git commit -m "chore: update digest state [skip ci]"
+          git push origin HEAD:main

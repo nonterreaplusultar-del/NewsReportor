@@ -31,3 +31,7 @@ data/state.json
 data/items.jsonl
 
 .claude/
+
+data/*
+!data/.gitkeep
+!data/state.json
