@@ -24,7 +24,7 @@ from src.item_store import (
 from src.llm_client import DeepSeekError, generate_digest
 from src.rss_fetcher import fetch_all, load_feeds
 from src.telegram_client import TelegramError, send_digest
-from src.utils import setup_logging
+from src.utils import normalize_telegram_html, setup_logging
 
 logger = logging.getLogger(__name__)
 
@@ -115,7 +115,8 @@ def main() -> None:
     if not candidates:
         logger.info("No new items to summarize.")
         no_new_msg = (
-            "🌐 Personal Brief｜No new items\n\n"
+            "🌐 <b>Personal Brief</b>\n"
+            "<code>No new items</code>\n\n"
             "There are no unsummarized RSS items at this time. "
             "Check back at the next scheduled run."
         )
@@ -143,7 +144,8 @@ def main() -> None:
         logger.error("State NOT updated — items will be retried next run.")
         sys.exit(1)
 
-    # 10. Save digest
+    # 10. Normalize and save digest
+    digest_text = normalize_telegram_html(digest_text)
     digests_dir = ROOT / "digests"
     digest_path, _ = save_digest(digest_text, digests_dir)
 

@@ -1,15 +1,38 @@
 # Personal Bilingual Brief
 
-A serverless RSS bilingual digest system. It fetches RSS feeds, calls the DeepSeek API to generate Chinese-English bilingual digests, saves Markdown files, and pushes summaries via Telegram Bot. Runs locally or via GitHub Actions cron — no VPS required.
+A serverless RSS bilingual digest system. It fetches RSS feeds, calls the DeepSeek API to generate Chinese-English bilingual digests, saves HTML-formatted briefs, and pushes summaries via Telegram Bot. Runs locally or via GitHub Actions cron — no VPS required.
 
 ## Features
 
 - Fetches RSS feeds across 7 categories (AI, Programming, Politics, China, Finance, Security, Ideas)
 - Generates concise bilingual (Chinese + English) digests via DeepSeek
+- Outputs **Telegram-friendly HTML** — clean, readable, mobile-optimized
 - Deduplicates items across runs
-- Pushes digests to Telegram
+- Pushes digests to Telegram with HTML formatting
+- Automatic fallback to plain text if HTML send fails
 - Scheduled 4x daily via GitHub Actions (Beijing time: 08:30, 12:30, 18:30, 22:30)
 - Manual trigger via `workflow_dispatch`
+
+## Digest Format
+
+The digest is generated as **Telegram-safe HTML** using only five tags:
+
+| Tag | Usage |
+|---|---|
+| `<b>` | Bold titles, section headers |
+| `<i>` | English subtitles |
+| `<a href="...">` | Source links in "Worth Reading" |
+| `<code>` | Timestamp |
+| `<pre>` | Rare, for code-like content |
+
+Lists use plain-text symbols (•, —, 1., 2.) — no `<ul>` or `<li>`.
+Separators use `━━━━━━━━━━━━━━` — no `<hr>`.
+
+The file extension is `.md` for compatibility, but the content is **HTML** optimized for Telegram's `parse_mode=HTML`.
+
+### Why HTML, not MarkdownV2?
+
+Telegram's MarkdownV2 requires strict escaping of special characters (`_`, `*`, `[`, `]`, `(`, `)`, etc.). News headlines frequently contain these characters, causing send failures. HTML parse_mode is more forgiving — we only use a safe subset of tags.
 
 ## Requirements
 
@@ -69,7 +92,7 @@ python scripts/run_digest_once.py
 # Force re-summarize recent items (ignore state)
 python scripts/run_digest_once.py --force --limit 15
 
-# View the latest digest
+# View the latest digest locally
 cat digests/latest.md
 ```
 
@@ -88,6 +111,37 @@ python scripts/run_digest_once.py --dry-run --limit 10
 # 4. Generate digest locally (no Telegram)
 python scripts/run_digest_once.py --no-telegram --limit 20
 ```
+
+## Telegram Behavior
+
+### Formatting
+
+Messages are sent with `parse_mode=HTML` using only safe tags: `<b>`, `<i>`, `<a>`, `<code>`, `<pre>`.
+
+### Message Splitting
+
+- Each message is capped at **3500 characters** (well under Telegram's 4096 limit)
+- Splitting happens at topic boundaries (━━━ separators) to avoid breaking mid-topic
+- Multi-part messages are prefixed: `<b>Part 1/3</b>`
+
+### Automatic Fallback
+
+If HTML send fails for any reason (malformed tags, unexpected characters), the system automatically:
+1. Strips all HTML tags
+2. Retries as **plain text**
+3. Logs the fallback for visibility
+
+This means you'll always receive the digest — formatted if possible, plain text if not.
+
+### Previewing the Digest Locally
+
+The latest digest is saved to `digests/latest.md`. Although the file extension is `.md`, the content is Telegram-safe HTML. To preview:
+
+```bash
+cat digests/latest.md
+```
+
+Or open it in a browser as HTML to see the formatting.
 
 ## GitHub Actions Setup
 
@@ -113,9 +167,9 @@ Go to your repository → **Settings** → **Secrets and variables** → **Actio
 
 Each run:
 1. Fetches RSS feeds
-2. Generates a bilingual digest via DeepSeek
+2. Generates a bilingual digest via DeepSeek (Telegram-safe HTML)
 3. Saves to `digests/YYYY-MM-DD-HHMM.md` and `digests/latest.md`
-4. Pushes to Telegram
+4. Pushes to Telegram with HTML formatting (with plain-text fallback)
 5. Commits updated state back to the repository
 
 ## Adding RSS Feeds
@@ -146,7 +200,7 @@ personal-bilingual-brief/
 ├── config/feeds.yml        # RSS source configuration
 ├── data/items.jsonl         # Persisted RSS items (one JSON per line)
 ├── data/state.json          # Summary state (which items have been processed)
-├── digests/                 # Generated Markdown digests
+├── digests/                 # Generated digests (HTML content, .md extension)
 │   ├── YYYY-MM-DD-HHMM.md
 │   └── latest.md
 ├── scripts/
@@ -158,9 +212,9 @@ personal-bilingual-brief/
 │   ├── rss_fetcher.py       # RSS fetching via feedparser
 │   ├── item_store.py        # JSONL + state persistence
 │   ├── llm_client.py        # DeepSeek API client
-│   ├── digest_builder.py    # Prompt construction
-│   ├── telegram_client.py   # Telegram Bot API client
-│   └── utils.py             # Logging, hashing helpers
+│   ├── digest_builder.py    # Prompt construction (Telegram HTML)
+│   ├── telegram_client.py   # Telegram Bot API (HTML + fallback)
+│   └── utils.py             # Logging, hashing, HTML sanitization
 └── .github/workflows/digest.yml
 ```
 
@@ -171,6 +225,7 @@ personal-bilingual-brief/
 - The code masks API keys in log output (shows only first 4 and last 4 characters)
 - All secrets are passed via environment variables at runtime
 - Telegram messages do not include raw RSS content — only the curated digest
+- Telegram bot token is never printed in logs
 
 ## License
 

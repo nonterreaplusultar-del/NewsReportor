@@ -1,8 +1,18 @@
 feeds:
   # ===== AI / Technology =====
-  - name: "OpenAI Blog"
+  - name: "OpenAI News"
     category: "AI / Technology"
-    url: "https://openai.com/blog/rss.xml"
+    url: "https://openai.com/news/rss.xml"
+    limit: 10
+
+  - name: "Google DeepMind"
+    category: "AI / Technology"
+    url: "https://deepmind.google/blog/rss.xml"
+    limit: 10
+
+  - name: "Google Research"
+    category: "AI / Technology"
+    url: "https://research.google/blog/rss/"
     limit: 10
 
   - name: "Google AI Blog"
@@ -23,22 +33,42 @@ feeds:
   - name: "The Verge - AI"
     category: "AI / Technology"
     url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml"
-    limit: 5
+    limit: 8
 
-  # ===== Programming =====
-  - name: "Hacker News (firehose)"
+  - name: "The Gradient"
+    category: "AI / Technology"
+    url: "https://thegradient.pub/rss/"
+    limit: 8
+
+  - name: "BAIR Blog"
+    category: "AI / Technology"
+    url: "https://bair.berkeley.edu/blog/feed.xml"
+    limit: 8
+
+  - name: "SemiAnalysis"
+    category: "AI / Technology"
+    url: "https://www.semianalysis.com/feed/"
+    limit: 8
+
+  # ===== Programming / Engineering =====
+  - name: "Hacker News Frontpage"
     category: "Programming"
     url: "https://hnrss.org/frontpage"
     limit: 20
 
-  - name: "The GitHub Blog"
+  - name: "GitHub Blog"
     category: "Programming"
     url: "https://github.blog/feed/"
     limit: 10
 
-  - name: "Ars Technica"
+  - name: "GitHub Engineering"
     category: "Programming"
-    url: "https://feeds.arstechnica.com/arstechnica/index"
+    url: "https://github.blog/engineering/feed/"
+    limit: 10
+
+  - name: "Stack Overflow Blog"
+    category: "Programming"
+    url: "https://stackoverflow.blog/feed/"
     limit: 10
 
   - name: "Simon Willison's Weblog"
@@ -46,15 +76,55 @@ feeds:
     url: "https://simonwillison.net/atom/everything/"
     limit: 10
 
-  # ===== World Politics =====
+  - name: "Martin Fowler"
+    category: "Programming"
+    url: "https://martinfowler.com/feed.atom"
+    limit: 10
+
+  - name: "Cloudflare Blog"
+    category: "Programming"
+    url: "https://blog.cloudflare.com/rss/"
+    limit: 10
+
+  - name: "AWS News Blog"
+    category: "Programming"
+    url: "https://aws.amazon.com/blogs/aws/feed/"
+    limit: 10
+
+  - name: "Google Cloud Blog"
+    category: "Programming"
+    url: "https://cloud.google.com/blog/rss"
+    limit: 10
+
+  - name: "Microsoft DevBlogs"
+    category: "Programming"
+    url: "https://devblogs.microsoft.com/feed/"
+    limit: 10
+
+  - name: "Ars Technica"
+    category: "Programming"
+    url: "https://feeds.arstechnica.com/arstechnica/index"
+    limit: 10
+
+  - name: "The Pragmatic Engineer"
+    category: "Career / Engineering"
+    url: "https://blog.pragmaticengineer.com/rss/"
+    limit: 10
+
+  # ===== World Politics / Geopolitics =====
+  - name: "BBC World"
+    category: "World Politics"
+    url: "https://feeds.bbci.co.uk/news/world/rss.xml"
+    limit: 10
+
   - name: "BBC News"
     category: "World Politics"
     url: "https://feeds.bbci.co.uk/news/rss.xml"
     limit: 10
 
-  - name: "NPR News"
+  - name: "NPR World"
     category: "World Politics"
-    url: "https://feeds.npr.org/1001/rss.xml"
+    url: "https://feeds.npr.org/1004/rss.xml"
     limit: 10
 
   - name: "The Guardian - World"
@@ -67,24 +137,84 @@ feeds:
     url: "https://www.aljazeera.com/xml/rss/all.xml"
     limit: 10
 
-  # ===== China =====
+  - name: "Deutsche Welle"
+    category: "World Politics"
+    url: "https://rss.dw.com/rdf/rss-en-all"
+    limit: 10
+
+  - name: "International Crisis Group"
+    category: "World Politics"
+    url: "https://www.crisisgroup.org/rss"
+    limit: 10
+
+  - name: "Foreign Affairs"
+    category: "World Politics"
+    url: "https://www.foreignaffairs.com/rss.xml"
+    limit: 8
+
+  - name: "Council on Foreign Relations"
+    category: "World Politics"
+    url: "https://www.cfr.org/rss.xml"
+    limit: 8
+
+  - name: "Reuters via Google News"
+    category: "World Politics"
+    url: "https://news.google.com/rss/search?q=site%3Areuters.com%20%28China%20OR%20geopolitics%20OR%20markets%20OR%20diplomacy%20OR%20technology%29&hl=en-US&gl=US&ceid=US%3Aen"
+    limit: 10
+
+  - name: "Bloomberg via Google News"
+    category: "World Politics"
+    url: "https://news.google.com/rss/search?q=site%3Abloomberg.com%20%28China%20OR%20markets%20OR%20economy%20OR%20technology%20OR%20geopolitics%29&hl=en-US&gl=US&ceid=US%3Aen"
+    limit: 10
+
+  # ===== China / Asia =====
   - name: "The Diplomat"
-    category: "China"
+    category: "China / Asia"
     url: "https://thediplomat.com/feed/"
     limit: 10
 
-  - name: "SupChina / The China Project"
-    category: "China"
-    url: "https://thechinaproject.com/feed/"
-    limit: 10
-
   - name: "Sixth Tone"
-    category: "China"
+    category: "China / Asia"
     url: "https://www.sixthtone.com/rss"
     limit: 10
 
-  # ===== Finance / Policy =====
-  - name: "The Economist"
+  - name: "China Daily - China"
+    category: "China / Asia"
+    url: "https://www.chinadaily.com.cn/rss/china_rss.xml"
+    limit: 10
+
+  - name: "China Daily - World"
+    category: "China / Asia"
+    url: "https://www.chinadaily.com.cn/rss/world_rss.xml"
+    limit: 10
+
+  - name: "ChinaFile"
+    category: "China / Asia"
+    url: "https://www.chinafile.com/rss.xml"
+    limit: 8
+
+  # ===== Finance / Policy / Data =====
+  - name: "Federal Reserve Press Releases"
+    category: "Finance / Policy"
+    url: "https://www.federalreserve.gov/feeds/press_all.xml"
+    limit: 10
+
+  - name: "BIS Press Releases"
+    category: "Finance / Policy"
+    url: "https://www.bis.org/doclist/all_pressrels.rss"
+    limit: 10
+
+  - name: "SEC Press Releases"
+    category: "Finance / Policy"
+    url: "https://www.sec.gov/news/pressreleases.rss"
+    limit: 10
+
+  - name: "IMF Blog"
+    category: "Finance / Policy"
+    url: "https://www.imf.org/en/blogs/rss"
+    limit: 10
+
+  - name: "The Economist - Finance"
     category: "Finance / Policy"
     url: "https://www.economist.com/finance-and-economics/rss.xml"
     limit: 10
@@ -94,12 +224,17 @@ feeds:
     url: "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114"
     limit: 10
 
-  - name: "EFF Deeplinks"
+  - name: "CNBC Technology"
     category: "Finance / Policy"
-    url: "https://www.eff.org/rss/updates.xml"
+    url: "https://www.cnbc.com/id/19854910/device/rss/rss.html"
     limit: 10
 
-  # ===== Security =====
+  - name: "Our World in Data"
+    category: "Data / World"
+    url: "https://ourworldindata.org/atom.xml"
+    limit: 10
+
+  # ===== Security / Digital Rights =====
   - name: "Krebs on Security"
     category: "Security"
     url: "https://krebsonsecurity.com/feed/"
@@ -115,7 +250,38 @@ feeds:
     url: "https://feeds.feedburner.com/TheHackersNews"
     limit: 10
 
-  # ===== Literature / Ideas =====
+  - name: "BleepingComputer"
+    category: "Security"
+    url: "https://www.bleepingcomputer.com/feed/"
+    limit: 10
+
+  - name: "EFF Deeplinks"
+    category: "Security"
+    url: "https://www.eff.org/rss/updates.xml"
+    limit: 10
+
+  # ===== Science / Long-term Knowledge =====
+  - name: "Quanta Magazine"
+    category: "Science / Knowledge"
+    url: "https://www.quantamagazine.org/feed/"
+    limit: 10
+
+  - name: "Nautilus"
+    category: "Science / Knowledge"
+    url: "https://nautil.us/feed/"
+    limit: 10
+
+  - name: "Smithsonian Magazine"
+    category: "Science / Knowledge"
+    url: "https://www.smithsonianmag.com/rss/latest_articles/"
+    limit: 10
+
+  - name: "MIT News"
+    category: "Science / Knowledge"
+    url: "https://news.mit.edu/rss/feed"
+    limit: 10
+
+  # ===== Literature / Ideas / Aesthetics =====
   - name: "Aeon"
     category: "Literature / Ideas"
     url: "https://aeon.co/feed.rss"
@@ -124,4 +290,40 @@ feeds:
   - name: "The Marginalian"
     category: "Literature / Ideas"
     url: "https://www.themarginalian.org/feed/"
+    limit: 10
+
+  - name: "Literary Hub"
+    category: "Literature / Ideas"
+    url: "https://lithub.com/feed/"
+    limit: 10
+
+  - name: "Public Domain Review"
+    category: "Literature / Ideas"
+    url: "https://publicdomainreview.org/rss.xml"
+    limit: 10
+
+  - name: "Los Angeles Review of Books"
+    category: "Literature / Ideas"
+    url: "https://lareviewofbooks.org/feed/"
+    limit: 10
+
+  - name: "The Paris Review"
+    category: "Literature / Ideas"
+    url: "https://www.theparisreview.org/blog/feed/"
+    limit: 8
+
+  # ===== Design / Culture / Visual Taste =====
+  - name: "Colossal"
+    category: "Design / Culture"
+    url: "https://www.thisiscolossal.com/feed/"
+    limit: 10
+
+  - name: "It's Nice That"
+    category: "Design / Culture"
+    url: "https://www.itsnicethat.com/rss"
+    limit: 10
+
+  - name: "AIGA Eye on Design"
+    category: "Design / Culture"
+    url: "https://eyeondesign.aiga.org/feed/"
     limit: 10
